@@ -10,16 +10,17 @@
 
 ### 步骤
 
-- 修改/Application/Common/Conf/config.php文件，增加以下路由规则：
+- 修改/Application/Common/Conf/config.php文件，增加以下路由规则，这一步至关重要，一开始不想用路由，想按照官方文档中的自动调用方式实现，但是总是请求不到相应的模块，最终使用路由和RestController配合完成。
 ```php
 'URL_ROUTER_ON'   => true,
 'URL_ROUTE_RULES'=>array(
-		array('bodyfat/:id','bodyfat/read','',array('method'=>'get')),
-		array('bodyfat','bodyfat/create','',array('method'=>'post')),
-		array('bodyfat/:id','bodyfat/update','',array('method'=>'put')),
-		array('bodyfat/:id','bodyfat/delete','',array('method'=>'delete')),
+	array('bodyfat/:id','bodyfat/read','',array('method'=>'get')),
+	array('bodyfat','bodyfat/create','',array('method'=>'post')),
+	array('bodyfat/:id','bodyfat/update','',array('method'=>'put')),
+	array('bodyfat/:id','bodyfat/delete','',array('method'=>'delete')),
 )
 ```
+路由规则数组，数组的第一个元素是url的正则表达式，第二个元素是指向的模块路径，第三个是请求方法的限制。
 - 新增Controller，代码如下
 ```php
 <?php
