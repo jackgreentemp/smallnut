@@ -14,6 +14,7 @@ return array(
     'URL_ROUTE_RULES'=>array(
         array('bodyfat/:id','bodyfat/read','',array('method'=>'get')),
         array('bodyfat','bodyfat/create','',array('method'=>'post')),
+        array('bodyfat/:id','bodyfat/update','',array('method'=>'put')),
         array('bodyfat/:id','bodyfat/delete','',array('method'=>'delete')),
     )
 );
