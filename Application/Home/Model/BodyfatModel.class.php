@@ -21,12 +21,12 @@ class BodyfatModel extends Model{
 	);
 
     protected $_validate = array(
-        array('age','require','必须！'),
-        array('gender','require','必须！'),
-        array('height','require','必须！'),
-        array('weight','require','必须！'),
-        array('bodyfat','require','必须！'),
-        array('bmi','require','必须！')
+        array('age','require','年龄必须！'),
+        array('gender','require','性别必须！'),
+        array('height','require','身高必须！'),
+        array('weight','require','体重必须！'),
+        array('bodyfat','require','体脂率必须！'),
+        array('bmi','require','bmi必须！')
     );
 
 
