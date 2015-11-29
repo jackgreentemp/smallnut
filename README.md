@@ -26,4 +26,10 @@ class BodyfatController extends RestController {
     protected $allowMethod = array('get', 'post', 'put', 'delete'); // REST允许的请求类型列表
     protected $defaultType = 'json';
 ```
-- 在上述的控制器中新增read, create, update, delete四个方法，编写对应的逻辑，
+- 在上述的控制器中新增read, create, update, delete四个方法，编写对应的逻辑
+
+### 注意事项
+- 当使用Content-Type为application/json格式post数据时，需要使用来获取客户端提交的数据
+```php
+$GLOBALS['HTTP_RAW_POST_DATA']
+```
