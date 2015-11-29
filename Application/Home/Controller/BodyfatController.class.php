@@ -3,7 +3,7 @@ namespace Home\Controller;
 use Think\Controller\RestController;
 class BodyfatController extends RestController {
 
-    protected $allowMethod = array('get','post','put', 'delete'); // REST允许的请求类型列表
+    protected $allowMethod = array('get', 'post', 'put', 'delete'); // REST允许的请求类型列表
     protected $defaultType = 'json';
 
     public function insert2Db($age, $gender, $height, $weight, $bodyfat, $bmi){
@@ -53,7 +53,18 @@ class BodyfatController extends RestController {
         echo $this->responseFactory("read", $dataModel, $result, "数据不存在");
     }
 
-    public function create($age, $gender, $height, $weight, $bodyfat, $bmi){
+    /*新建数据记录*/
+//    public function create($age, $gender, $height, $weight, $bodyfat, $bmi){
+    public function create(){
+        $inputs = json_decode($GLOBALS['HTTP_RAW_POST_DATA'], true);//backbone使用application/json，必须使用$GLOBALS['HTTP_RAW_POST_DATA']来接收数据
+
+        $age = $inputs['age'];
+        $gender = $inputs['gender'];
+        $height = $inputs['height'];
+        $weight = $inputs['weight'];
+        $bodyfat = $inputs['bodyfat'];
+        $bmi = $inputs['bmi'];
+
         $preDataArray = array(
             'age' => $age,
             'gender' => $gender,
@@ -84,6 +95,14 @@ class BodyfatController extends RestController {
 //            ));
 //        }
         echo $this->responseFactory("create", $dataModel, $result, "");
+    }
+
+    public function update() {
+//        echo json_encode(array(
+//            "status" => "success",
+//            "data" => I('put.'),//使用I('put.')获取put来的数据
+//            "type" => $this->_type
+//        ));
     }
 
     public function delete($id) {
