@@ -1,8 +1,12 @@
 ﻿###  简介
-基于ThinkPHP的Rest API示例
-本例测试时使用了Chrome浏览器插件Advanced REST client模拟get, post, put, delete请求
-ThinkPHP对Rest支持不是很好，需要结合路由、RestController一起完成
-读之前需要了解thinkphp、rest基本知识
+- 基于ThinkPHP的Rest API示例
+- 本例测试时使用了Chrome浏览器插件Advanced REST client模拟get, post, put, delete请求
+- ThinkPHP对Rest支持不是很好，需要结合路由、RestController一起完成
+- 需要了解thinkphp、rest基本知识
+
+###  背景
+- 最近在学习Backbone，Backbone数据模型与服务器同步数据默认使用Rest方式，之前没有用过Rest方式的接口，借此机会学习了一些相关的知识
+- 后台最熟悉的还是thinkphp，但是网上鲜有thinkphp rest方式的例子，练手时遇到好多坑，最后总算调通了想要的功能
 
 ### 步骤
 
