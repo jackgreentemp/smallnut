@@ -29,7 +29,7 @@ class BodyfatController extends RestController {
 - 在上述的控制器中新增read, create, update, delete四个方法，编写对应的逻辑
 
 ### 注意事项
-- 当使用Content-Type为application/json格式post数据时，需要使用来获取客户端提交的数据
+- 当使用Content-Type为application/json格式post数据时，需要使用以下方式来获取客户端提交的数据
 ```php
-$GLOBALS['HTTP_RAW_POST_DATA']
+$inputs = json_decode($GLOBALS['HTTP_RAW_POST_DATA'], true);
 ```
