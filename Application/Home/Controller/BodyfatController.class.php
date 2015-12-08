@@ -94,6 +94,9 @@ class BodyfatController extends RestController {
 //                "status" => "failure",
 //            ));
 //        }
+
+        $result = $this -> calResult($gender, $age, $bodyfat);
+
         echo $this->responseFactory("create", $dataModel, $result, "");
     }
 
@@ -133,7 +136,7 @@ class BodyfatController extends RestController {
                 if($result) {
                     return json_encode(array(
                         "status" => "success",
-                        "id" => $result
+                        "result" => $result
                     ));
                 } else {
                     return json_encode(array(
@@ -177,6 +180,103 @@ class BodyfatController extends RestController {
                     ));
                 }
                 break;
+        }
+    }
+
+    public function calResult($gender, $age, $fat) {
+
+        $resultMale = array(
+            "A" => "瘦猴，不过肯定能看到腹肌，赶紧去多吃一点吧！",
+            "B" => "男神啊！标准的六块腹肌了吧！说不定人鱼线也有啊！",
+            "C" => "还不错，只是腹肌还是只有那么一整块吧，还需继续努力！",
+            "D" =>"裤子还能穿下吗？皮带扣还够用吗？赶紧运动去吧！",
+            "E" => "还吃那么多？！再不运动，你就没救了啊！"
+        );
+
+        $resultFemale = array(
+            "A" => "弱不禁风小女子一枚吧！多运动，多补充营养！",
+            "B" => "女神就是你了！赶紧亮出你的马甲线和人鱼线吧！",
+            "C" => "软妹子一个，别总宅家里看韩剧了，多去运动运动！",
+            "D" => "放下你手里的零食，你对镜子里的自己还满意吗？加油吧！",
+            "E" => "你确认你是打算放弃治疗了吗？"
+        );
+
+        if($gender == 1) { //male
+            if($age < 40) {
+                if($fat < 11) {//A
+                    return $resultMale['A'];
+                } else if($fat >= 11 && $fat < 17) {// B
+                    return $resultMale['B'];
+                } else if($fat >= 17 && $fat < 22) {// C
+                    return $resultMale['C'];
+                } else if($fat >= 22 && $fat < 27) {// D
+                    return $resultMale['D'];
+                } else if($fat >= 27) {// E
+                    return $resultMale['E'];
+                }
+            } else if($age >= 40 && $age <60) {
+                if($fat < 12) {//A
+                    return $resultMale['A'];
+                } else if($fat >= 12 && $fat < 18) {// B
+                    return $resultMale['B'];
+                } else if($fat >= 18 && $fat < 23) {// C
+                    return $resultMale['C'];
+                } else if($fat >= 23 && $fat < 28) {// D
+                    return $resultMale['D'];
+                } else if($fat >= 28) {// E
+                    return $resultMale['E'];
+                }
+            } else if($age >= 60 ) {
+                if($fat < 14) {//A
+                    return $resultMale['A'];
+                } else if($fat >= 14 && $fat < 20) {// B
+                    return $resultMale['B'];
+                } else if($fat >= 20 && $fat < 25) {// C
+                    return $resultMale['C'];
+                } else if($fat >= 25 && $fat < 30) {// D
+                    return $resultMale['D'];
+                } else if($fat >= 30) {// E
+                    return $resultMale['E'];
+                }
+            }
+        } else { // female
+            if($age < 40) {
+                if($fat < 21) {//A
+                    return $resultFemale['A'];
+                } else if($fat >= 21 && $fat < 28) {// B
+                    return $resultFemale['B'];
+                } else if($fat >= 28 && $fat < 35) {// C
+                    return $resultFemale['C'];
+                } else if($fat >= 35 && $fat < 40) {// D
+                    return $resultFemale['D'];
+                } else if($fat >= 40) {// E
+                    return $resultFemale['E'];
+                }
+            } else if($age >= 40 && $age <60) {
+                if($fat < 22) {//A
+                    return $resultFemale['A'];
+                } else if($fat >= 22 && $fat < 29) {// B
+                    return $resultFemale['B'];
+                } else if($fat >= 29 && $fat < 36) {// C
+                    return $resultFemale['C'];
+                } else if($fat >= 36 && $fat < 41) {// D
+                    return $resultFemale['D'];
+                } else if($fat >= 41) {// E
+                    return $resultFemale['E'];
+                }
+            } else if($age >= 60 ) {
+                if($fat < 23) {//A
+                    return $resultFemale['A'];
+                } else if($fat >= 23 && $fat < 30) {// B
+                    return $resultFemale['B'];
+                } else if($fat >= 30 && $fat < 37) {// C
+                    return $resultFemale['C'];
+                } else if($fat >= 37 && $fat < 42) {// D
+                    return $resultFemale['D'];
+                } else if($fat >= 42) {// E
+                    return $resultFemale['E'];
+                }
+            }
         }
     }
 }
