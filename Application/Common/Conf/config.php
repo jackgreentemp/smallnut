@@ -17,5 +17,6 @@ return array(
         array('bodyfat','bodyfat/create','',array('method'=>'post')),
         array('bodyfat/:id','bodyfat/update','',array('method'=>'put')),
         array('bodyfat/:id','bodyfat/delete','',array('method'=>'delete')),
+        array('weixin','weixin/getJsPackage','',array('method'=>'get')),
     )
 );
