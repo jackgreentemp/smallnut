@@ -65,6 +65,8 @@ class BodyfatController extends RestController {
         $bodyfat = $inputs['bodyfat'];
         $bmi = $inputs['bmi'];
 
+        $assessResult = $this -> calResult($gender, $age, $bodyfat);
+
         $preDataArray = array(
             'age' => $age,
             'gender' => $gender,
@@ -72,6 +74,7 @@ class BodyfatController extends RestController {
             'weight' => $weight,
             'bodyfat' => $bodyfat,
             'bmi' => $bmi,
+            'grade' => $assessResult['grade'],
             'createtime' => date('Y-m-d H:i:s')
         );
         $dataModel = D('Bodyfat');
@@ -80,24 +83,25 @@ class BodyfatController extends RestController {
                 "status" => "failure",
                 "error" => $dataModel->getError()
             ));
+            return false;
         } else {
             $result = $dataModel->add();
         }
 //        $result = $dataModel->data($preDataArray)->add();
-//        if($result) {
-//            echo json_encode(array(
-//                "status" => "success",
-//                "id" => $result
-//            ));
-//        } else {
-//            echo json_encode(array(
-//                "status" => "failure",
-//            ));
-//        }
+        if($result) {
+            echo json_encode(array(
+                "status" => "success",
+                "id" => $result,
+                "result" => $assessResult['label']
+            ));
+        } else {
+            echo json_encode(array(
+                "status" => "failure",
+                "error" => $dataModel->getDbError()
+            ));
+        }
 
-        $result = $this -> calResult($gender, $age, $bodyfat);
-
-        echo $this->responseFactory("create", $dataModel, $result, "");
+        // echo $this->responseFactory("create", $dataModel, $assessResult['label'], "");
     }
 
     public function update() {
@@ -185,20 +189,65 @@ class BodyfatController extends RestController {
 
     public function calResult($gender, $age, $fat) {
 
+//        $resultMale = array(
+//            "A" => "瘦猴，不过肯定能看到腹肌，赶紧去多吃一点吧！",
+//            "B" => "男神啊！标准的六块腹肌了吧！说不定人鱼线也有啊！",
+//            "C" => "还不错，只是腹肌还是只有那么一整块吧，还需继续努力！",
+//            "D" =>"裤子还能穿下吗？皮带扣还够用吗？赶紧运动去吧！",
+//            "E" => "还吃那么多？！再不运动，你就没救了啊！"
+//        );
+//
+//        $resultFemale = array(
+//            "A" => "弱不禁风小女子一枚吧！多运动，多补充营养！",
+//            "B" => "女神就是你了！赶紧亮出你的马甲线和人鱼线吧！",
+//            "C" => "软妹子一个，别总宅家里看韩剧了，多去运动运动！",
+//            "D" => "放下你手里的零食，你对镜子里的自己还满意吗？加油吧！",
+//            "E" => "你确认你是打算放弃治疗了吗？"
+//        );
         $resultMale = array(
-            "A" => "瘦猴，不过肯定能看到腹肌，赶紧去多吃一点吧！",
-            "B" => "男神啊！标准的六块腹肌了吧！说不定人鱼线也有啊！",
-            "C" => "还不错，只是腹肌还是只有那么一整块吧，还需继续努力！",
-            "D" =>"裤子还能穿下吗？皮带扣还够用吗？赶紧运动去吧！",
-            "E" => "还吃那么多？！再不运动，你就没救了啊！"
+            "A" => array(
+                'grade' => 'A',
+                'label' => "瘦猴，不过肯定能看到腹肌，赶紧去多吃一点吧！"
+            ),
+            "B" => array(
+                'grade' => 'B',
+                'label' => "男神啊！标准的六块腹肌了吧！说不定人鱼线也有啊！"
+            ),
+            "C" => array(
+                'grade' => 'C',
+                'label' => "还不错，只是腹肌还是只有那么一整块吧，还需继续努力！"
+            ),
+            "D" => array(
+                'grade' => 'D',
+                'label' => "裤子还能穿下吗？皮带扣还够用吗？赶紧运动去吧！"
+            ),
+            "E" => array(
+                'grade' => 'E',
+                'label' => "还吃那么多？！再不运动，你就没救了啊！"
+            )
         );
 
         $resultFemale = array(
-            "A" => "弱不禁风小女子一枚吧！多运动，多补充营养！",
-            "B" => "女神就是你了！赶紧亮出你的马甲线和人鱼线吧！",
-            "C" => "软妹子一个，别总宅家里看韩剧了，多去运动运动！",
-            "D" => "放下你手里的零食，你对镜子里的自己还满意吗？加油吧！",
-            "E" => "你确认你是打算放弃治疗了吗？"
+            "A" => array(
+                'grade' => 'A',
+                'label' => "弱不禁风小女子一枚吧！多运动，多补充营养！"
+            ),
+            "B" => array(
+                'grade' => 'B',
+                'label' => "女神就是你了！赶紧亮出你的马甲线和人鱼线吧！"
+            ),
+            "C" => array(
+                'grade' => 'C',
+                'label' => "软妹子一个，别总宅家里看韩剧了，多去运动运动！"
+            ),
+            "D" => array(
+                'grade' => 'A',
+                'label' => "放下你手里的零食，你对镜子里的自己还满意吗？加油吧！"
+            ),
+            "E" => array(
+                'grade' => 'A',
+                'label' => "你确认你是打算放弃治疗了吗？"
+            )
         );
 
         if($gender == 1) { //male
