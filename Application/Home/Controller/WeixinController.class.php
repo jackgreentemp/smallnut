@@ -15,9 +15,9 @@ class WeixinController extends RestController {
         $this->weixinApi = new WeixinApi(C('appId'), C('appSecret'));
     }
 
-    public function getJsPackage()
+    public function getJsPackage($id)
     {
-        $result = $this->weixinApi->getSignPackage();
+        $result = $this->weixinApi->getSignPackage($id);
 
 //        {
 //        "appId": ""

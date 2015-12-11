@@ -6,8 +6,8 @@ return array(
     'DB_HOST'=>'localhost',
     'DB_NAME'=>'smallnut',
     'DB_USER'=>'root',
-    // 'DB_PWD'=>'4a8477453a',
-    'DB_PWD'=>'123',
+    'DB_PWD'=>'4a8477453a',
+    // 'DB_PWD'=>'123',
     'DB_PORT'=>'3306',
     'DB_PREFIX'=>'',
 
@@ -17,6 +17,6 @@ return array(
         array('bodyfat','bodyfat/create','',array('method'=>'post')),
         array('bodyfat/:id','bodyfat/update','',array('method'=>'put')),
         array('bodyfat/:id','bodyfat/delete','',array('method'=>'delete')),
-        array('weixin','weixin/getJsPackage','',array('method'=>'get')),
+        array('weixin/:id','weixin/getJsPackage','',array('method'=>'get')),
     )
 );

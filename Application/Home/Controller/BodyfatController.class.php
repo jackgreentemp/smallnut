@@ -50,6 +50,7 @@ class BodyfatController extends RestController {
 //                "data" => $result
 //            ));
 //        }
+        $result['assessResult'] = $this -> calResult($result['gender'], $result['age'], $result['bodyfat'])['label'];
         echo $this->responseFactory("read", $dataModel, $result, "数据不存在");
     }
 
