@@ -31,6 +31,13 @@ class WeixinController extends RestController {
         echo json_encode($result);
     }
 
+    public function postJsPackage()
+    {
+        $inputs = json_decode($GLOBALS['HTTP_RAW_POST_DATA'], true);
+        $result = $this->weixinApi->getSignPackage($inputs['url']);
+        echo json_encode($result);
+    }
+
 
 }
 
