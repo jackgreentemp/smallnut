@@ -59,6 +59,7 @@ class BodyfatController extends RestController {
     public function create(){
         $inputs = json_decode($GLOBALS['HTTP_RAW_POST_DATA'], true);//backbone使用application/json，必须使用$GLOBALS['HTTP_RAW_POST_DATA']来接收数据
 
+        $name = $inputs['name'];
         $age = $inputs['age'];
         $gender = $inputs['gender'];
         $height = $inputs['height'];
@@ -69,6 +70,7 @@ class BodyfatController extends RestController {
         $assessResult = $this -> calResult($gender, $age, $bodyfat);
 
         $preDataArray = array(
+            'name' => $name,
             'age' => $age,
             'gender' => $gender,
             'height' => $height,
@@ -208,46 +210,46 @@ class BodyfatController extends RestController {
         $resultMale = array(
             "A" => array(
                 'grade' => 'A',
-                'label' => "瘦猴，不过肯定能看到腹肌，赶紧去多吃一点吧！"
+                'label' => "有思想，有理想，有抱负，可惜哥们，你就比男神缺了点肌肉，快快点击圣诞大礼包查看专属于你的"
             ),
             "B" => array(
                 'grade' => 'B',
-                'label' => "男神啊！标准的六块腹肌了吧！说不定人鱼线也有啊！"
+                'label' => "自带男神光环，既拥有健康的身体又拥有过人的智慧，哥们，你和真正男神只差了完美的肌肉线条，快快点击圣诞大礼包查看专属于你的"
             ),
             "C" => array(
                 'grade' => 'C',
-                'label' => "还不错，只是腹肌还是只有那么一整块吧，还需继续努力！"
+                'label' => "略带文艺气质，看上去帅帅哒，但捏上去软软的，哥们，你只比男神少了点肌肉，快快点击圣诞大礼包查看专属于你的"
             ),
             "D" => array(
                 'grade' => 'D',
-                'label' => "裤子还能穿下吗？皮带扣还够用吗？赶紧运动去吧！"
+                'label' => "眉宇间透着霸气，同时拥有一颗柔软的心，可惜哥们，你比男神还多了几两肉，快快点击圣诞大礼包查看专属于你的"
             ),
             "E" => array(
                 'grade' => 'E',
-                'label' => "还吃那么多？！再不运动，你就没救了啊！"
+                'label' => "拥有阳光般的笑容和强大内心，哥们，你比男神只多了一层脂肪，男人就要对自己狠一点，快快点击圣诞大礼包查看专属于你的"
             )
         );
 
         $resultFemale = array(
             "A" => array(
                 'grade' => 'A',
-                'label' => "弱不禁风小女子一枚吧！多运动，多补充营养！"
+                'label' => "具有柔美气质，在瘦弱的身躯下有一颗强大的心，亲，你和女神之间只差了一点肌肉，快快点击圣诞大礼包查看专属于你的"
             ),
             "B" => array(
                 'grade' => 'B',
-                'label' => "女神就是你了！赶紧亮出你的马甲线和人鱼线吧！"
+                'label' => "自带女神光环，既拥有姣好的身材又拥有智慧的大脑，亲，你和女神只差了马甲线和蜜桃臀，快快点击圣诞大礼包查看专属于你的"
             ),
             "C" => array(
                 'grade' => 'C',
-                'label' => "软妹子一个，别总宅家里看韩剧了，多去运动运动！"
+                'label' => "拥有甜美迷人的微笑，看上去萌萌哒，捏上去软软的，亲，你只比女神少了点肌肉，快快点击圣诞大礼包查看专属于你的"
             ),
             "D" => array(
-                'grade' => 'A',
-                'label' => "放下你手里的零食，你对镜子里的自己还满意吗？加油吧！"
+                'grade' => 'D',
+                'label' => "甜美可人，又聪明伶俐就是圆嘟嘟的脸和肚子给你拖了后腿，亲，你只比女神多了几两肉，快快点击圣诞大礼包查看专属于你的"
             ),
             "E" => array(
-                'grade' => 'A',
-                'label' => "你确认你是打算放弃治疗了吗？"
+                'grade' => 'E',
+                'label' => "拥有俏皮可爱的笑容和坚强无比的内心，亲，你比女神只多了一层脂肪，快快点击圣诞大礼包查看专属于你的"
             )
         );
 
